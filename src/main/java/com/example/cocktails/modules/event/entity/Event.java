@@ -1,7 +1,21 @@
 package com.example.cocktails.modules.event.entity;
 
+import com.example.cocktails.modules.product.entity.Product;
+import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
+@Table(name = "events")
 public class Event {
-    private int id;
-    private String password;
-    private String type;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @Enumerated(EnumType.STRING)
+    private EventType type;
+
+    @OneToMany(mappedBy = "category")
+    private List<Product> products = new ArrayList<>();
 }
