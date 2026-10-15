@@ -1,6 +1,7 @@
 package com.example.cocktails.modules.event.entity;
 
 import com.example.cocktails.modules.product.entity.Product;
+import com.example.cocktails.modules.user.entity.User;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -18,4 +19,8 @@ public class Event {
 
     @OneToMany(mappedBy = "category")
     private List<Product> products = new ArrayList<>();
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
 }
